@@ -1,12 +1,18 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import api from "../services/api";
-import type { User } from "../types";
+import type { User, UserRole } from "../types";
 
 interface AuthContextValue {
   user: User | null;
   loading: boolean;
   login: (token: string) => Promise<void>;
+  register: (
+    name: string,
+    email: string,
+    password: string,
+    role: UserRole
+  ) => Promise<void>;
   logout: () => void;
 }
 
@@ -38,13 +44,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await fetchProfile();
   };
 
+  const register = async (
+    name: string,
+    email: string,
+    password: string,
+    role: UserRole
+  ) => {
+    const { data } = await api.post("/auth/register", {
+      name,
+      email,
+      password,
+      role,
+    });
+    localStorage.setItem("token", data.token);
+    await fetchProfile();
+  };
+
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, register, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

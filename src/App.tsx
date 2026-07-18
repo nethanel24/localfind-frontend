@@ -5,7 +5,7 @@ import LoadingSpinner from "./components/LoadingSpinner";
 
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
-const Register = lazy(() => import("./pages/Register"));
+const Register = lazy(() => import("./pages/Register/Register"));
 const Feed = lazy(() => import("./pages/Feed"));
 const ProviderDetails = lazy(() => import("./pages/ProviderDetails"));
 const Reviews = lazy(() => import("./pages/Reviews"));
