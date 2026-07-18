@@ -1,122 +1,104 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
+import LoadingSpinner from "./components/LoadingSpinner";
 
-function App() {
-  const [count, setCount] = useState(0)
+const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login/Login"));
+const Register = lazy(() => import("./pages/Register/Register"));
+const Feed = lazy(() => import("./pages/Feed"));
+const ProviderDetails = lazy(() => import("./pages/ProviderDetails"));
+const Reviews = lazy(() => import("./pages/Reviews"));
+const Favorites = lazy(() => import("./pages/Favorites"));
+const EditProfileUser = lazy(() => import("./pages/EditProfileUser"));
+const OnboardingProvider = lazy(() => import("./pages/OnboardingProvider"));
+const DashboardProvider = lazy(() => import("./pages/DashboardProvider"));
+const EditProfileProvider = lazy(() => import("./pages/EditProfileProvider"));
+const AdminUsers = lazy(() => import("./pages/AdminUsers"));
+const AdminCategories = lazy(() => import("./pages/AdminCategories"));
+const AdminStats = lazy(() => import("./pages/AdminStats"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+const App = () => (
+  <Suspense fallback={<LoadingSpinner message="טוען עמוד..." />}>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/feed" element={<Feed />} />
+      <Route path="/providers/:id" element={<ProviderDetails />} />
+      <Route path="/providers/:id/reviews" element={<Reviews />} />
 
-      <div className="ticks"></div>
+      <Route
+        path="/favorites"
+        element={
+          <PrivateRoute>
+            <Favorites />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute>
+            <EditProfileUser />
+          </PrivateRoute>
+        }
+      />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <Route
+        path="/provider/onboarding"
+        element={
+          <PrivateRoute allowedRoles={["provider"]}>
+            <OnboardingProvider />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/provider/dashboard"
+        element={
+          <PrivateRoute allowedRoles={["provider"]}>
+            <DashboardProvider />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/provider/profile"
+        element={
+          <PrivateRoute allowedRoles={["provider"]}>
+            <EditProfileProvider />
+          </PrivateRoute>
+        }
+      />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
-}
+      <Route
+        path="/admin/users"
+        element={
+          <PrivateRoute allowedRoles={["admin"]}>
+            <AdminUsers />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/categories"
+        element={
+          <PrivateRoute allowedRoles={["admin"]}>
+            <AdminCategories />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/stats"
+        element={
+          <PrivateRoute allowedRoles={["admin"]}>
+            <AdminStats />
+          </PrivateRoute>
+        }
+      />
 
-export default App
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </Suspense>
+);
+
+export default App;
