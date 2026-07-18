@@ -13,6 +13,7 @@ interface AuthContextValue {
     password: string,
     role: UserRole
   ) => Promise<void>;
+  googleLogin: (credential: string, role?: UserRole) => Promise<void>;
   logout: () => void;
 }
 
@@ -60,6 +61,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await fetchProfile();
   };
 
+  const googleLogin = async (credential: string, role?: UserRole) => {
+    const { data } = await api.post("/auth/google", { credential, role });
+    localStorage.setItem("token", data.token);
+    await fetchProfile();
+  };
+
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
@@ -67,7 +74,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, login, register, logout }}
+      value={{ user, loading, login, register, googleLogin, logout }}
     >
       {children}
     </AuthContext.Provider>

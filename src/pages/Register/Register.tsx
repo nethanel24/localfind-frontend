@@ -6,12 +6,13 @@ import {
   faMagnifyingGlass,
   faBriefcase,
 } from "@fortawesome/free-solid-svg-icons";
+import { GoogleLogin } from "@react-oauth/google";
 import { useAuth } from "../../context/AuthContext";
 import type { UserRole } from "../../types";
 import styles from "./Register.module.css";
 
 const Register = () => {
-  const { register } = useAuth();
+  const { register, googleLogin } = useAuth();
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -41,6 +42,17 @@ const Register = () => {
       setError(err.response?.data?.message || "ההרשמה נכשלה, נסה שוב");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleSuccess = async (credential?: string) => {
+    if (!credential) return;
+    setError("");
+    try {
+      await googleLogin(credential, role);
+      navigate("/feed");
+    } catch (err: any) {
+      setError(err.response?.data?.message || "ההרשמה עם גוגל נכשלה");
     }
   };
 
@@ -129,6 +141,15 @@ const Register = () => {
           >
             {loading ? "נרשם..." : "הרשמה"}
           </button>
+
+          <div className={styles.divider}>או</div>
+
+          <div className={styles.googleWrap}>
+            <GoogleLogin
+              onSuccess={(res) => handleGoogleSuccess(res.credential)}
+              onError={() => setError("ההרשמה עם גוגל נכשלה")}
+            />
+          </div>
         </div>
 
         <p className={styles.loginLink}>
