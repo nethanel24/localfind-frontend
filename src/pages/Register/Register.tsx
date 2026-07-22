@@ -36,11 +36,13 @@ const Register = () => {
 
     setLoading(true);
     try {
-      await register(name, email, password, role);
-      navigate("/feed");
-    } catch (err: any) {
+    await register(name, email, password, role);
+    navigate(role === "provider" ? "/provider/onboarding" : "/feed");   
+   } 
+    catch (err: any) {
       setError(err.response?.data?.message || "ההרשמה נכשלה, נסה שוב");
-    } finally {
+    } 
+    finally {
       setLoading(false);
     }
   };
@@ -49,9 +51,10 @@ const Register = () => {
     if (!credential) return;
     setError("");
     try {
-      await googleLogin(credential, role);
-      navigate("/feed");
-    } catch (err: any) {
+await googleLogin(credential, role);
+navigate(role === "provider" ? "/provider/onboarding" : "/feed");   
+ } 
+ catch (err: any) {
       setError(err.response?.data?.message || "ההרשמה עם גוגל נכשלה");
     }
   };
