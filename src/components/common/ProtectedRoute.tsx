@@ -1,15 +1,15 @@
 import { Navigate, useLocation } from "react-router-dom";
 import type { ReactNode } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import LoadingSpinner from "./LoadingSpinner";
-import type { UserRole } from "../types";
+import type { UserRole } from "../../types";
 
-interface PrivateRouteProps {
+interface ProtectedRouteProps {
   children: ReactNode;
   allowedRoles?: UserRole[];
 }
 
-const PrivateRoute = ({ children, allowedRoles }: PrivateRouteProps) => {
+const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
   const { user, loading } = useAuth();
   const location = useLocation();
 
@@ -24,4 +24,4 @@ const PrivateRoute = ({ children, allowedRoles }: PrivateRouteProps) => {
   return <>{children}</>;
 };
 
-export default PrivateRoute;
+export default ProtectedRoute;
