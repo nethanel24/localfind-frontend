@@ -1,12 +1,10 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute";
-import LoadingSpinner from "./components/LoadingSpinner";
-
+import ProtectedRoute from "./components/common/ProtectedRoute";
+import LoadingSpinner from "./components/common/LoadingSpinner";
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login/Login"));
 const Register = lazy(() => import("./pages/Register/Register"));
-const Feed = lazy(() => import("./pages/Feed"));
 const ProviderDetails = lazy(() => import("./pages/ProviderDetails"));
 const Reviews = lazy(() => import("./pages/Reviews"));
 const Favorites = lazy(() => import("./pages/Favorites"));
@@ -18,7 +16,7 @@ const AdminUsers = lazy(() => import("./pages/AdminUsers"));
 const AdminCategories = lazy(() => import("./pages/AdminCategories"));
 const AdminStats = lazy(() => import("./pages/AdminStats"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-
+const Feed = lazy(() => import("./pages/Feed/Feed"));
 const App = () => (
   <Suspense fallback={<LoadingSpinner message="טוען עמוד..." />}>
     <Routes>
@@ -32,67 +30,67 @@ const App = () => (
       <Route
         path="/favorites"
         element={
-          <PrivateRoute>
+          <ProtectedRoute>
             <Favorites />
-          </PrivateRoute>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/profile"
         element={
-          <PrivateRoute>
+          <ProtectedRoute>
             <EditProfileUser />
-          </PrivateRoute>
+          </ProtectedRoute>
         }
       />
 
       <Route
         path="/provider/onboarding"
         element={
-          <PrivateRoute allowedRoles={["provider"]}>
+          <ProtectedRoute allowedRoles={["provider"]}>
             <OnboardingProvider />
-          </PrivateRoute>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/provider/dashboard"
         element={
-          <PrivateRoute allowedRoles={["provider"]}>
+          <ProtectedRoute allowedRoles={["provider"]}>
             <DashboardProvider />
-          </PrivateRoute>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/provider/profile"
         element={
-          <PrivateRoute allowedRoles={["provider"]}>
+          <ProtectedRoute allowedRoles={["provider"]}>
             <EditProfileProvider />
-          </PrivateRoute>
+          </ProtectedRoute>
         }
       />
 
       <Route
         path="/admin/users"
         element={
-          <PrivateRoute allowedRoles={["admin"]}>
+          <ProtectedRoute allowedRoles={["admin"]}>
             <AdminUsers />
-          </PrivateRoute>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/admin/categories"
         element={
-          <PrivateRoute allowedRoles={["admin"]}>
+          <ProtectedRoute allowedRoles={["admin"]}>
             <AdminCategories />
-          </PrivateRoute>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/admin/stats"
         element={
-          <PrivateRoute allowedRoles={["admin"]}>
+          <ProtectedRoute allowedRoles={["admin"]}>
             <AdminStats />
-          </PrivateRoute>
+          </ProtectedRoute>
         }
       />
 
