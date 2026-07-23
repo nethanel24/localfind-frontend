@@ -55,3 +55,18 @@ export interface Review {
   comment?: string;
   createdAt: string;
 }
+export interface RequestUser {
+  _id: string;
+  name: string;
+  phone?: string;
+  imgUrl?: string;
+}
+
+export interface ServiceRequest {
+  _id: string;
+  user: RequestUser;
+  provider: string;
+  text: string;
+  status: "pending" | "handled";
+  createdAt: string;
+}
