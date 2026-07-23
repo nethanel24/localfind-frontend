@@ -14,6 +14,7 @@ interface AuthContextValue {
     role: UserRole
   ) => Promise<void>;
   googleLogin: (credential: string, role?: UserRole) => Promise<void>;
+  refreshUser: () => Promise<void>;
   logout: () => void;
 }
 
@@ -74,7 +75,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, login, register, googleLogin, logout }}
+      value={{ user, loading, login, register, googleLogin, refreshUser: fetchProfile, logout }}
     >
       {children}
     </AuthContext.Provider>

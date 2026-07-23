@@ -1,0 +1,166 @@
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+.avatarSection {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.avatarWrap {
+  position: relative;
+  width: 84px;
+  margin: 0 auto 10px;
+}
+
+.avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.avatarImg {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatarBtn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  border: 2px solid var(--color-background);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.avatarName {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.card {
+  background: #fff;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.fieldLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 5px;
+}
+
+.fieldInput {
+  width: 100%;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--border-radius-small);
+  padding: 11px 14px;
+  font-size: 15px;
+  font-family: var(--font-family);
+  background: #fafaf8;
+  color: var(--color-text-main);
+}
+
+.fieldInput::placeholder {
+  color: var(--color-placeholder);
+}
+
+.ltr {
+  direction: ltr;
+  text-align: right;
+}
+
+.successText {
+  color: var(--color-primary-medium);
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.errorText {
+  color: var(--red);
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.saveBtn {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--border-radius-small);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-family);
+  margin-bottom: 10px;
+}
+
+.saveBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.deleteBtn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: none;
+  color: var(--red);
+  border: 0.5px solid var(--red-br);
+  cursor: pointer;
+  border-radius: var(--border-radius-small);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-family);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 16px 12px 32px;
+  }
+}
