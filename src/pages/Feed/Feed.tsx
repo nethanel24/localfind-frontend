@@ -7,6 +7,8 @@ import ProviderCard from "../../components/ProviderCard/ProviderCard";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import ErrorMessage from "../../components/common/ErrorMessage";
 import styles from "./Feed.module.css";
+import { fetchFavorites, addFavorite, removeFavorite } from "../../store/slices/favoritesSlice";
+import { useAuth } from "../../context/AuthContext";
 
 const Feed = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +16,8 @@ const Feed = () => {
     (state) => state.providers
   );
   const { coords, ready } = useGeolocation();
+  const { user } = useAuth();
+  const favoriteIds = useAppSelector((state) => state.favorites.ids);
 
   const [text, setText] = useState("");
 
@@ -21,6 +25,20 @@ const Feed = () => {
   useEffect(() => {
     if (ready) dispatch(fetchProviders(coords));
   }, [ready, coords, dispatch]);
+  useEffect(() => {
+    if (user) dispatch(fetchFavorites());
+  }, [user, dispatch]);
+
+  const handleToggleFavorite = useCallback(
+    (providerId: string) => {
+      if (favoriteIds.includes(providerId)) {
+        dispatch(removeFavorite(providerId));
+      } else {
+        dispatch(addFavorite(providerId));
+      }
+    },
+    [favoriteIds, dispatch]
+  );
 
   const handleSearch = useCallback(() => {
     if (text.trim().length < 2) {
@@ -81,6 +99,8 @@ const Feed = () => {
                   key={provider._id}
                   provider={provider}
                   coords={coords}
+                  isFavorite={favoriteIds.includes(provider._id)}
+                  onToggleFavorite={user ? handleToggleFavorite : undefined}
                 />
               ))
             )}

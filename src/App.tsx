@@ -7,7 +7,7 @@ const Login = lazy(() => import("./pages/Login/Login"));
 const Register = lazy(() => import("./pages/Register/Register"));
 const ProviderDetails = lazy(() => import("./pages/ProviderDetails/ProviderDetails"));
 const Reviews = lazy(() => import("./pages/Reviews"));
-const Favorites = lazy(() => import("./pages/Favorites"));
+const Favorites = lazy(() => import("./pages/Favorites/Favorites"));
 const EditProfileUser = lazy(() => import("./pages/EditProfileUser"));
 const OnboardingProvider = lazy(() => import("./pages/OnboardingProvider/OnboardingProvider"));
 const DashboardProvider = lazy(() => import("./pages/DashboardProvider/DashboardProvider"));
