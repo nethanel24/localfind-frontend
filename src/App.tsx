@@ -15,7 +15,7 @@ const EditProfileProvider = lazy(() => import("./pages/EditProfileProvider/EditP
 const AdminUsers = lazy(() => import("./pages/AdminUsers/AdminUsers"));
 const AdminCategories = lazy(() => import("./pages/AdminCategories/AdminCategories"));
 const AdminStats = lazy(() => import("./pages/AdminStats/AdminStats"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
 const Feed = lazy(() => import("./pages/Feed/Feed"));
 const App = () => (
   <Suspense fallback={<LoadingSpinner message="טוען עמוד..." />}>
