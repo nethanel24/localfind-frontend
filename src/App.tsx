@@ -13,7 +13,7 @@ const OnboardingProvider = lazy(() => import("./pages/OnboardingProvider/Onboard
 const DashboardProvider = lazy(() => import("./pages/DashboardProvider/DashboardProvider"));
 const EditProfileProvider = lazy(() => import("./pages/EditProfileProvider"));
 const AdminUsers = lazy(() => import("./pages/AdminUsers"));
-const AdminCategories = lazy(() => import("./pages/AdminCategories"));
+const AdminCategories = lazy(() => import("./pages/AdminCategories/AdminCategories"));
 const AdminStats = lazy(() => import("./pages/AdminStats"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Feed = lazy(() => import("./pages/Feed/Feed"));
