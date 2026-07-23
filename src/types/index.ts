@@ -42,3 +42,16 @@ export interface Coords {
   lat: number;
   lng: number;
 }
+export interface ReviewUser {
+  _id: string;
+  name: string;
+}
+
+export interface Review {
+  _id: string;
+  provider: string;
+  user: ReviewUser;
+  rating: number;
+  comment?: string;
+  createdAt: string;
+}
