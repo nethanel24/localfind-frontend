@@ -14,7 +14,7 @@ const DashboardProvider = lazy(() => import("./pages/DashboardProvider/Dashboard
 const EditProfileProvider = lazy(() => import("./pages/EditProfileProvider/EditProfileProvider"));
 const AdminUsers = lazy(() => import("./pages/AdminUsers/AdminUsers"));
 const AdminCategories = lazy(() => import("./pages/AdminCategories/AdminCategories"));
-const AdminStats = lazy(() => import("./pages/AdminStats"));
+const AdminStats = lazy(() => import("./pages/AdminStats/AdminStats"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Feed = lazy(() => import("./pages/Feed/Feed"));
 const App = () => (
