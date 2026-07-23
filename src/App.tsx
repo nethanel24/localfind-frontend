@@ -5,7 +5,7 @@ import LoadingSpinner from "./components/common/LoadingSpinner";
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login/Login"));
 const Register = lazy(() => import("./pages/Register/Register"));
-const ProviderDetails = lazy(() => import("./pages/ProviderDetails"));
+const ProviderDetails = lazy(() => import("./pages/ProviderDetails/ProviderDetails"));
 const Reviews = lazy(() => import("./pages/Reviews"));
 const Favorites = lazy(() => import("./pages/Favorites"));
 const EditProfileUser = lazy(() => import("./pages/EditProfileUser"));
