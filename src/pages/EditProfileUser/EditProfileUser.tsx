@@ -5,6 +5,7 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import api from "../../services/api";
 import { useAuth } from "../../context/AuthContext";
 import Navbar from "../../components/layout/Navbar/Navbar";
+import AdminLayout from "../../components/layout/AdminLayout/AdminLayout";
 import styles from "./EditProfileUser.module.css";
 
 const getInitials = (name: string) =>
@@ -14,6 +15,8 @@ const EditProfileUser = () => {
   const { user, logout, refreshUser } = useAuth();
   const navigate = useNavigate();
   const fileInput = useRef<HTMLInputElement>(null);
+
+  const isAdmin = user?.role === "admin";
 
   const [name, setName] = useState(user?.name || "");
   const [email, setEmail] = useState(user?.email || "");
@@ -97,68 +100,73 @@ const EditProfileUser = () => {
     }
   };
 
+  const content = (
+    <div className={styles.page}>
+      <div className={styles.avatarSection}>
+        <div className={styles.avatarWrap}>
+          {imgUrl ? (
+            <img className={styles.avatarImg} src={imgUrl} alt={name} />
+          ) : (
+            <div className={styles.avatar}>{getInitials(name || "")}</div>
+          )}
+          <button className={styles.avatarBtn} onClick={() => fileInput.current?.click()} title="החלף תמונה">
+            <FontAwesomeIcon icon={faCamera} />
+          </button>
+        </div>
+        <input className={styles.hiddenInput} type="file" accept="image/*" ref={fileInput} onChange={(e) => handlePickImage(e.target.files?.[0])} />
+        <div className={styles.avatarName}>{name}</div>
+      </div>
+
+      <div className={styles.card}>
+        <div className={styles.cardTitle}>פרטים אישיים</div>
+
+        <div className={styles.field}>
+          <label className={styles.fieldLabel}>שם מלא</label>
+          <input className={styles.fieldInput} type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
+
+        <div className={styles.field}>
+          <label className={styles.fieldLabel}>אימייל</label>
+          <input className={`${styles.fieldInput} ${styles.ltr}`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </div>
+
+        <div className={styles.field}>
+          <label className={styles.fieldLabel}>טלפון</label>
+          <input className={`${styles.fieldInput} ${styles.ltr}`} type="tel" placeholder="0500000000" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        </div>
+      </div>
+
+      <div className={styles.card}>
+        <div className={styles.cardTitle}>שינוי סיסמה</div>
+
+        <div className={styles.field}>
+          <label className={styles.fieldLabel}>סיסמה נוכחית</label>
+          <input className={styles.fieldInput} type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} />
+        </div>
+
+        <div className={styles.field}>
+          <label className={styles.fieldLabel}>סיסמה חדשה</label>
+          <input className={styles.fieldInput} type="password" placeholder="לפחות 6 תווים" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+        </div>
+      </div>
+
+      {message && <div className={styles.successText}>{message}</div>}
+      {error && <div className={styles.errorText}>{error}</div>}
+
+      <button className={styles.saveBtn} onClick={handleSave} disabled={busy}>
+        {busy ? "שומר..." : "שמור שינויים"}
+      </button>
+
+      <button className={styles.deleteBtn} onClick={handleDelete}>מחק חשבון</button>
+    </div>
+  );
+
+  if (isAdmin) return <AdminLayout>{content}</AdminLayout>;
+
   return (
     <>
       <Navbar />
-
-      <div className={styles.page}>
-        <div className={styles.avatarSection}>
-          <div className={styles.avatarWrap}>
-            {imgUrl ? (
-              <img className={styles.avatarImg} src={imgUrl} alt={name} />
-            ) : (
-              <div className={styles.avatar}>{getInitials(name || "")}</div>
-            )}
-            <button className={styles.avatarBtn} onClick={() => fileInput.current?.click()} title="החלף תמונה">
-              <FontAwesomeIcon icon={faCamera} />
-            </button>
-          </div>
-          <input className={styles.hiddenInput} type="file" accept="image/*" ref={fileInput} onChange={(e) => handlePickImage(e.target.files?.[0])} />
-          <div className={styles.avatarName}>{name}</div>
-        </div>
-
-        <div className={styles.card}>
-          <div className={styles.cardTitle}>פרטים אישיים</div>
-
-          <div className={styles.field}>
-            <label className={styles.fieldLabel}>שם מלא</label>
-            <input className={styles.fieldInput} type="text" value={name} onChange={(e) => setName(e.target.value)} />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.fieldLabel}>אימייל</label>
-            <input className={`${styles.fieldInput} ${styles.ltr}`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.fieldLabel}>טלפון</label>
-            <input className={`${styles.fieldInput} ${styles.ltr}`} type="tel" placeholder="0500000000" value={phone} onChange={(e) => setPhone(e.target.value)} />
-          </div>
-        </div>
-
-        <div className={styles.card}>
-          <div className={styles.cardTitle}>שינוי סיסמה</div>
-
-          <div className={styles.field}>
-            <label className={styles.fieldLabel}>סיסמה נוכחית</label>
-            <input className={styles.fieldInput} type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.fieldLabel}>סיסמה חדשה</label>
-            <input className={styles.fieldInput} type="password" placeholder="לפחות 6 תווים" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
-          </div>
-        </div>
-
-        {message && <div className={styles.successText}>{message}</div>}
-        {error && <div className={styles.errorText}>{error}</div>}
-
-        <button className={styles.saveBtn} onClick={handleSave} disabled={busy}>
-          {busy ? "שומר..." : "שמור שינויים"}
-        </button>
-
-        <button className={styles.deleteBtn} onClick={handleDelete}>מחק חשבון</button>
-      </div>
+      {content}
     </>
   );
 };
