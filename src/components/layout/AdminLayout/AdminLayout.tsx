@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot, faChartBar, faTag, faUsers, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faChartBar, faTag, faUsers, faRightFromBracket, faGear } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../../context/AuthContext";
 import styles from "./AdminLayout.module.css";
 
@@ -41,6 +41,9 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
           </NavLink>
           <NavLink to="/admin/users" className={linkClass}>
             <FontAwesomeIcon icon={faUsers} /> משתמשים
+          </NavLink>
+          <NavLink to="/profile" className={linkClass}>
+            <FontAwesomeIcon icon={faGear} /> פרטים אישיים
           </NavLink>
           <div className={styles.spacer} />
           <button className={styles.logout} onClick={handleLogout}>

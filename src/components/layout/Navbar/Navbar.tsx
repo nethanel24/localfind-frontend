@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot, faHouse, faUser, faStar, faBell } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faHouse, faUser, faStar, faBell, faGear } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../../context/AuthContext";
 import styles from "./Navbar.module.css";
 
@@ -31,6 +31,9 @@ const Navbar = () => {
             </NavLink>
             <NavLink to="/provider/profile" className={linkClass}>
               <FontAwesomeIcon icon={faUser} /> פרופיל
+            </NavLink>
+            <NavLink to="/profile" className={linkClass}>
+              <FontAwesomeIcon icon={faGear} /> פרטים אישיים
             </NavLink>
           </>
         ) : (
