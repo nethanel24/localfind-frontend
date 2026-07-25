@@ -1,0 +1,238 @@
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 28px 16px 40px;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.step {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-border);
+}
+
+.stepActive {
+  height: 8px;
+  background: var(--color-primary);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.sectionTitle {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.sectionSub {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 16px;
+}
+
+.freeInput {
+  width: 100%;
+  border: 1.5px solid var(--color-primary-border);
+  border-radius: var(--border-radius-large);
+  padding: 14px 16px;
+  font-size: 15px;
+  font-family: var(--font-family);
+  background: #fff;
+  color: var(--color-text-main);
+  direction: rtl;
+  resize: none;
+  min-height: 80px;
+  margin-bottom: 16px;
+}
+
+.freeInput::placeholder {
+  color: var(--color-placeholder);
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.field {
+  flex: 1;
+}
+
+.fieldLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 5px;
+}
+
+.fieldInput {
+  width: 100%;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--border-radius-small);
+  padding: 11px 14px;
+  font-size: 15px;
+  font-family: var(--font-family);
+  background: #fafaf8;
+  color: var(--color-text-main);
+}
+
+.fieldInput::placeholder {
+  color: var(--color-placeholder);
+}
+
+.mainBtn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--border-radius-small);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-family);
+}
+
+.mainBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.errorText {
+  color: var(--red);
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.editSummary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--color-background);
+  border-radius: var(--border-radius-small);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.editSummaryText {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.editSummaryEdit {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.suggestionCard {
+  background: #fff;
+  border: 1.5px solid var(--color-primary-border);
+  border-radius: var(--border-radius-large);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.suggestionIcon {
+  font-size: 24px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  width: 44px;
+  text-align: center;
+}
+
+.suggestionBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.suggestionTitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.suggestionSub {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.manualPick {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+}
+
+.manualSelect {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: var(--border-radius-small);
+  border: 0.5px solid var(--color-border);
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--color-text-main);
+  background: #fff;
+}
+
+.sliderCard {
+  background: #fff;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  padding: 18px 16px;
+  margin-bottom: 24px;
+}
+
+.sliderTitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.sliderSub {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 16px;
+}
+
+.slider {
+  width: 100%;
+  accent-color: var(--color-primary);
+  height: 4px;
+  margin-bottom: 8px;
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 20px 12px 32px;
+  }
+}

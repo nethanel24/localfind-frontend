@@ -1,0 +1,140 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.item {
+  background: #fff;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  padding: 14px;
+  text-align: center;
+}
+
+.number {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.label {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+.delta {
+  font-size: 10px;
+  margin-top: 4px;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.chartsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.chartCard {
+  background: #fff;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  padding: 16px;
+}
+
+.chartTitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+
+.barRow:last-child {
+  margin-bottom: 0;
+}
+
+.barLabel {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  width: 88px;
+  flex-shrink: 0;
+}
+
+.barTrack {
+  flex: 1;
+  height: 8px;
+  background: var(--color-background);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.barValue {
+  font-size: 13px;
+  font-weight: 500;
+  width: 30px;
+  text-align: left;
+}
+
+.distRow {
+  margin-bottom: 12px;
+}
+
+.distHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.distLabel {
+  color: var(--color-text-secondary);
+}
+
+.distValue {
+  font-weight: 600;
+}
+
+.ratingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 0.5px solid var(--color-border);
+  font-size: 13px;
+}
+
+.ratingValue {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+.empty {
+  text-align: center;
+  padding: 20px 0;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .chartsRow {
+    grid-template-columns: 1fr;
+  }
+}
