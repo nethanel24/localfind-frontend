@@ -52,6 +52,12 @@
   font-weight: 600;
 }
 
+.userArea {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .avatar {
   width: 28px;
   height: 28px;
@@ -63,6 +69,25 @@
   justify-content: center;
   font-size: 10px;
   font-weight: 600;
+}
+
+.logout {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: var(--border-radius-small);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.logout:hover {
+  color: var(--red);
 }
 
 @media (max-width: 640px) {
