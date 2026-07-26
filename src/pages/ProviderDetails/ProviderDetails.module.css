@@ -276,3 +276,18 @@
   text-align: center;
   margin-bottom: 10px;
 }
+.reviewsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.writeReview {
+  padding: 6px 12px;
+  border-radius: var(--border-radius-small);
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
