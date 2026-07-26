@@ -70,6 +70,8 @@ const ProviderDetails = () => {
   const waHref = phone ? "https://wa.me/" + toWhatsappNumber(phone) + "?text=" + encodeURIComponent(waText) : "";
   const telHref = phone ? "tel:" + phone : "";
 
+  const canReview = user && user.role !== "provider";
+
   return (
     <>
       <nav className={styles.navbar}>
@@ -119,7 +121,7 @@ const ProviderDetails = () => {
           <p className={styles.bio}>{provider.description}</p>
         </div>
 
-        {user && user.role !== "provider" && (
+        {canReview && (
           <div className={styles.infoCard}>
             <div className={styles.sectionTitle}>שלח בקשה</div>
             {sent ? (
@@ -141,7 +143,14 @@ const ProviderDetails = () => {
           </div>
         )}
 
-        <div className={styles.sectionTitle}>ביקורות</div>
+        <div className={styles.reviewsHeader}>
+          <div className={styles.sectionTitle}>ביקורות</div>
+          {canReview && (
+            <Link to={"/providers/" + id + "/reviews"} className={styles.writeReview}>
+              כתוב ביקורת
+            </Link>
+          )}
+        </div>
 
         {(reviews || []).length === 0 ? (
           <div className={styles.empty}>אין עדיין ביקורות</div>
