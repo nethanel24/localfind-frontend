@@ -1,6 +1,6 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot, faHouse, faUser, faStar, faBell, faGear } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faHouse, faUser, faStar, faBell, faGear, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../../context/AuthContext";
 import styles from "./Navbar.module.css";
 
@@ -8,11 +8,17 @@ const getInitials = (name: string) =>
   name.trim().split(" ").slice(0, 2).map((part) => part[0]).join("");
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const isProvider = user?.role === "provider";
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `${styles.link} ${isActive ? styles.linkActive : ""}`;
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -52,7 +58,12 @@ const Navbar = () => {
       </div>
 
       {user ? (
-        <div className={styles.avatar}>{getInitials(user.name)}</div>
+        <div className={styles.userArea}>
+          <div className={styles.avatar}>{getInitials(user.name)}</div>
+          <button className={styles.logout} onClick={handleLogout}>
+            <FontAwesomeIcon icon={faRightFromBracket} /> יציאה
+          </button>
+        </div>
       ) : (
         <Link to="/login" className={styles.link}>
           התחבר
